@@ -1,6 +1,6 @@
 // array columns to order
 var $order_columns = [
-        NULL,
+        'LOGBOOK_ID',
         'INPUT_DATE',
         'EMPLOYEE',
         'PO_NUMBER',
