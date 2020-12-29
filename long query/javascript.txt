@@ -1,0 +1,10 @@
+$("#tbl-PoLog").DataTable({
+    processing: true,
+    serverSide: true,
+    order: [],
+    scrollX: true,
+    ajax: {
+      url: baseurl + "PurchaseManagementSendPO/PoLog/getData",
+      type: "POST"
+    }
+});
