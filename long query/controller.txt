@@ -1,0 +1,42 @@
+public function getData()
+    {
+        $data = $this->M_polog->make_datatables();
+        $array = [];
+        foreach ($data as $key => $value) {
+            $no = $key + 1;
+            $value['SEND_DATE_1'] == NULL ? $visibility_button = 'hidden' : $visibility_button = '';
+            $sub_data = [];
+            $sub_data[] ='<center>'.$no.'</center>';
+            $sub_data[] = '<center>'.$value['INPUT_DATE'].'</center>';
+            $sub_data[] = '<center>'.$value['EMPLOYEE'].'</center>';
+            $sub_data[] = '<center>'.$value['PO_NUMBER'].'</center>';
+            $sub_data[] = '<center>'.$value['VENDOR_NAME'].'</center>';
+            $sub_data[] = '<center>'.$value['BUYER_NAME'] . ' - ' . $value['BUYER_NIK'].'</center>';
+            $sub_data[] = '<center>'.$value['PO_REVISION'].'</center>';
+            $sub_data[] = '<center>'.$value['ATTACHMENT_FLAG'].'</center>';
+            $sub_data[] = '<center>'.$value['PO_PRINT_DATE'].'</center>';
+            $sub_data[] = '<center>'.$value['DISTRIBUTION_METHOD'].'</center>';
+            $sub_data[] = '<center>'.$value['PURCHASING_APPROVE_DATE'].'</center>';
+            $sub_data[] = '<center>'.$value['MANAGEMENT_APPROVE_DATE'].'</center>';
+            $sub_data[] = '<center>'.$value['SEND_DATE_1'].'</center>';
+            $sub_data[] = '<center>'.$value['DELIVERY_STATUS_1'].'</center>';
+            $sub_data[] = '<center>'.$value['SEND_DATE_2'].'</center>';
+            $sub_data[] = '<center>'.$value['DELIVERY_STATUS_2'].'</center>';
+            $sub_data[] = '<center>'.$value['VENDOR_CONFIRM_DATE'].'</center>';
+            $sub_data[] = '<center>'.$value['VENDOR_CONFIRM_METHOD'].'</center>';
+            $sub_data[] = '<center>'.$value['VENDOR_CONFIRM_PIC'].'</center>';
+            $sub_data[] = '<center>'.$value['VENDOR_CONFIRM_NOTE'].'</center>';
+            $sub_data[] = '<center>'.$value['ATTACHMENT'].'</center>';
+            $sub_data[] = '<center>'.'<a class="btn btn-success '. $visibility_button .'" href="'. base_url("PurchaseManagementSendPO/SendPO") . '?po_number=' . $value["PO_NUMBER"] . '-' . $value["PO_REVISION"] .'" title="Resend"><i class="fa fa-send"></i></a>
+                                      <a class="btn btn-success btn-edit" href="'. base_url("PurchaseManagementSendPO/PoLog/edit") . '?po_numb=' . $value['PO_NUMBER'] . '-' . $value['PO_REVISION'] .'" title="Edit"><i class="fa fa-edit"></i></a>'.'</center>';
+            $array[] = $sub_data;
+        }
+
+        $output = [
+			              "draw"				    => intval($_POST["draw"]),
+			              "recordsTotal"		=> $this->M_polog->get_all_data(),
+			              "recordsFiltered"	=> $this->M_polog->get_filtered_data(),
+			              "data"				    => $array
+		    ];
+		echo json_encode($output);
+  }
