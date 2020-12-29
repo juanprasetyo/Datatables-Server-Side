@@ -1,0 +1,13 @@
+const tblUser = $('#tbl-user').DataTable({
+        processing: true,
+        serverSide: true,
+        order: [],
+        ajax: {
+            url: baseurl + "userGet",
+            type: "POST"
+        },
+        columnDefs: [{
+            "target": [4],
+            "orderable": false
+        }, ]
+});
