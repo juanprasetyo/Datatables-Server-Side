@@ -112,7 +112,7 @@ var $order_columns = [
             $order = "PO_PRINT_DATE DESC";
         }
 
-        if($_POST['length'] != -1){
+        if(isset($_POST['length'])){
             $start = $_POST['start'];
             $to = $_POST['start'] + $_POST['length'] - 1;
         } else {
