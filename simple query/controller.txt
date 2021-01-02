@@ -1,30 +1,30 @@
 public function get_user()
-	{
-		$data_user = $this->M_Latihan->make_datatables();
+{
+	$data_user = $this->M_Latihan->make_datatables();
 		
-		$data = [];
-		foreach ($data_user as $key => $value) {
-			$no = $key + 1;
-			$sub_array = [];
-			$sub_array[] = '<center>'. $no .'</center>';
-			$sub_array[] = $value['name'];
-			$sub_array[] = $value['email'];
-			$sub_array[] = $value['address'];
-			$sub_array[] = '
-                <center>
-				            <button class="btn btn-danger btn-del-data" data-id="' . $value["id"] .'"><i class="fa fa-trash"></i></button>
-				            <a href="' . base_url("edit/") . $value["id"] . '" class="btn btn-success btn-edit-data"><i class="fa fa-edit"></i></a>
-			          </center>
-       ';
+	$data = [];
+	foreach ($data_user as $key => $value) {
+		$no = $key + 1;
+		$sub_array = [];
+		$sub_array[] = '<center>'. $no .'</center>';
+		$sub_array[] = $value['name'];
+		$sub_array[] = $value['email'];
+		$sub_array[] = $value['address'];
+		$sub_array[] = '
+                	<center>
+				<button class="btn btn-danger btn-del-data" data-id="' . $value["id"] .'"><i class="fa fa-trash"></i></button>
+				<a href="' . base_url("edit/") . $value["id"] . '" class="btn btn-success btn-edit-data"><i class="fa fa-edit"></i></a>
+			</center>
+       		';
 
-			$data[] = $sub_array;
-		}
-
-		$output = [
-			"draw"				    => intval($_POST["draw"]),
-			"recordsTotal"		=> $this->M_Latihan->get_all_data(),
-			"recordsFiltered"	=> $this->M_Latihan->get_filtered_data(),
-			"data"				    => $data
-		];
-		echo json_encode($output);
+		$data[] = $sub_array;
 	}
+
+	$output = [
+		"draw"			=> intval($_POST["draw"]),
+		"recordsTotal"		=> $this->M_Latihan->get_all_data(),
+		"recordsFiltered"	=> $this->M_Latihan->get_filtered_data(),
+		"data"			=> $data
+	];
+	echo json_encode($output);
+}
