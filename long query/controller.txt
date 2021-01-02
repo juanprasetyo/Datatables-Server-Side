@@ -1,4 +1,3 @@
-```php
 public function getData()
     {
         $data = $this->M_polog->make_datatables();
@@ -41,4 +40,3 @@ public function getData()
 	];
 	echo json_encode($output);
   }
-```
