@@ -1,3 +1,4 @@
+```php
 public function getData()
     {
         $data = $this->M_polog->make_datatables();
@@ -33,10 +34,11 @@ public function getData()
         }
 
         $output = [
-			              "draw"				    => intval($_POST["draw"]),
-			              "recordsTotal"		=> $this->M_polog->get_all_data(),
-			              "recordsFiltered"	=> $this->M_polog->get_filtered_data(),
-			              "data"				    => $array
-		    ];
-		echo json_encode($output);
+		"draw"			=> intval($_POST["draw"]),
+		"recordsTotal"		=> $this->M_polog->get_all_data(),
+		"recordsFiltered"	=> $this->M_polog->get_filtered_data(),
+		"data"			=> $array
+	];
+	echo json_encode($output);
   }
+```
